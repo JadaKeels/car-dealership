@@ -18,7 +18,7 @@ public class Vehicle {
         this.vin = vin;
         this.year = year;
         this.make = make;
-        this.model = model
+        this.model = model;
         this.vehiceType = vehiceType;
         this.color = color;
         this.odometer = odometer;
