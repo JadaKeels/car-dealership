@@ -1,51 +1,75 @@
 package com.pluralsight;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.math.BigDecimal
+import java.io.*;
+import java.math.BigDecimal;
 
 public class DealershipFileManager {
 
+    private static final String FILE_NAME = "inventory.csv";
+
+    // Load dealership and inventory from file
     public Dealership getDealership() {
-        return null;
+
+        Dealership dealership = null;
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("inventory.csv"));
+            BufferedReader reader =
+                    new BufferedReader(new FileReader(FILE_NAME));
 
+            // Read dealership information
             String dealershipLine = reader.readLine();
 
-            String[] dealershipData = dealershipLine.split("\\|");
+            String[] dealershipData =
+                    dealershipLine.split("\\|");
 
-            String name = dealershipData[0];
+            dealership = new Dealership(
+                    dealershipData[0], // name
+                    dealershipData[1], // address
+                    dealershipData[2]  // phone
+            );
 
-            String address = dealershipData[1];
-
-            String phone = dealershipData[2];
-
-            dealership = new Dealership(name, address, phone);
-
+            // Read all vehicles
             String line;
 
             while ((line = reader.readLine()) != null) {
 
-                String[] vehicleData = line.split("\\|");
+                String[] vehicleData =
+                        line.split("\\|");
 
-                int vin = Integer.parseInt(vehicleData[1]);
+                int vin =
+                        Integer.parseInt(vehicleData[0]);
 
-                String make = vehicleData[2];
+                int year =
+                        Integer.parseInt(vehicleData[1]);
 
-                String model = vehicleData[3];
+                String make =
+                        vehicleData[2];
 
-                String vehicleType = vehicleData[4];
+                String model =
+                        vehicleData[3];
 
-                String color = vehicleType[5];
+                String vehicleType =
+                        vehicleData[4];
 
-                int odometer = Integer.parseInt(vehicleData[6]);
+                String color =
+                        vehicleData[5];
 
-                BigDecimal price = new BigDecimal(vehicleData[7]);
+                int odometer =
+                        Integer.parseInt(vehicleData[6]);
 
-                Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                BigDecimal price =
+                        new BigDecimal(vehicleData[7]);
+
+                Vehicle vehicle = new Vehicle(
+                        vin,
+                        year,
+                        make,
+                        model,
+                        vehicleType,
+                        color,
+                        odometer,
+                        price
+                );
 
                 dealership.addVehicle(vehicle);
             }
@@ -53,15 +77,50 @@ public class DealershipFileManager {
             reader.close();
 
         } catch (IOException e) {
-
-            System.out.println("Error reading inventory file.");
-
+            System.out.println("Error loading dealership file.");
             e.printStackTrace();
         }
 
         return dealership;
     }
 
+    // Save dealership and inventory to file
     public void saveDealership(Dealership dealership) {
+
+        try {
+            BufferedWriter writer = new BufferedWriter(
+                    new FileWriter("inventory.csv")
+            );
+
+            // Write dealership information
+            writer.write(
+                    dealership.getName() + "|" +
+                            dealership.getAddress() + "|" +
+                            dealership.getPhone()
+            );
+            writer.newLine();
+
+            // Write vehicles
+            for (Vehicle vehicle : dealership.getAllVehicles()) {
+
+                writer.write(
+                        vehicle.getVin() + "|" +
+                                vehicle.getYear() + "|" +
+                                vehicle.getMake() + "|" +
+                                vehicle.getModel() + "|" +
+                                vehicle.getVehicleType() + "|" +
+                                vehicle.getColor() + "|" +
+                                vehicle.getOdometer() + "|" +
+                                vehicle.getPrice()
+                );
+
+                writer.newLine();
+            }
+
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("Error saving dealership file.");
+            e.printStackTrace();
+        }
     }
-}

@@ -4,6 +4,15 @@ public class Program {
 
     public static void main(String[] args) {
 
-        System.out.println("Dealership application starting...");
+        DealershipFileManager fileManager = new DealershipFileManager();
+
+        Dealership dealership = fileManager.getDealership();
+
+        System.out.println(dealership.getName());
+
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+
+            System.out.println(vehicle);
+        }
     }
 }
