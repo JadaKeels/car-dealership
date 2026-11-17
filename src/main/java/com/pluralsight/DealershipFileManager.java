@@ -57,32 +57,21 @@ public class DealershipFileManager {
 }
 
                 // Read vehicles
-                while ((line = reader.readLine()) != null) {
+                String line;
 
+// Read vehicles
+while ((line = reader.readLine()) != null) {
         String[] vehicleData = line.split("\\|");
 
-        if (vehicleData.length < 8) {
-            continue;
-        }
-
-        int vin = Integer.parseInt(vehicleData[0]);
-        int year = Integer.parseInt(vehicleData[1]);
-        String make = vehicleData[2];
-        String model = vehicleData[3];
-        String vehicleType = vehicleData[4];
-        String color = vehicleData[5];
-        int odometer = Integer.parseInt(vehicleData[6]);
-        BigDecimal price = new BigDecimal(vehicleData[7]);
-
         Vehicle vehicle = new Vehicle(
-                vin,
-                year,
-                make,
-                model,
-                vehicleType,
-                color,
-                odometer,
-                price
+                Integer.parseInt(vehicleData[0]), // VIN
+                Integer.parseInt(vehicleData[1]), // Year
+                vehicleData[2],                   // Make
+                vehicleData[3],                   // Model
+                vehicleData[4],                   // Vehicle Type
+                vehicleData[5],                   // Color
+                Integer.parseInt(vehicleData[6]), // Odometer
+                new BigDecimal(vehicleData[7])    // Price
         );
 
         dealership.addVehicle(vehicle);
