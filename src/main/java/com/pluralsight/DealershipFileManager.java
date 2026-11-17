@@ -1,59 +1,92 @@
 package com.pluralsight;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.math.BigDecimal;
 
 public class DealershipFileManager {
 
-    private static final String FILE_NAME = "inventory.csv";
-
     public Dealership getDealership() {
         Dealership dealership = null;
 
-        try (BufferedReader reader =
-                     new BufferedReader(new FileReader("inventory.csv"))) {
 
-            String dealershipLine = reader.readLine();
+        try {
+        BufferedReader reader =
+                new BufferedReader(new FileReader(FILE_NAME));
 
-            if (dealershipLine != null) {
-                String[] dealershipData = dealershipLine.split("\\|");
+        // Read dealership information
+        String dealershipLine = reader.readLine();
 
-                dealership = new Dealership(
-                        dealershipData[0],
-                        dealershipData[1],
-                        dealershipData[2],
-                        new ArrayList<Vehicle>()
+        if (dealershipLine != null) {
+            String[] dealershipData = dealershipLine.split("\\|");
+
+            dealership = new Dealership(
+                    dealershipData[0],
+                    dealershipData[1],
+                    dealershipData[2]
+            );
+
+            // Read vehicles
+            String line;
+            while ((line = reader.readLine()) != null) {
+
+                String[] vehicleData = line.split("\\|");
+
+                Vehicle vehicle = new Vehicle(
+                        Integer.parseInt(vehicleData[0]),
+                        Integer.parseInt(vehicleData[1]),
+                        vehicleData[2],
+                        vehicleData[3],
+                        vehicleData[4],
+                        vehicleData[5],
+                        Integer.parseInt(vehicleData[6]),
+                        Double.parseDouble(vehicleData[7])
                 );
-            }
 
-        } catch (IOException e) {
-            e.printStackTrace();
+                dealership.addVehicle(vehicle);
+            }
         }
 
-        return dealership;
+        reader.close();
+
+    } catch (IOException e) {
+        e.printStackTrace();
     }
 
-                // Read vehicles
-                String line;
+    return dealership;
+}
 
+                // Read vehicles
                 while ((line = reader.readLine()) != null) {
 
-                    String[] vehicleData = line.split("\\|");
+        String[] vehicleData = line.split("\\|");
 
-                    int vin = Integer.parseInt(vehicleData[0]);
-                    int year = Integer.parseInt(vehicleData[1]);
-                    String make = vehicleData[2];
-                    String model = vehicleData[3];
-                    String vehicleType = vehicleData[4];
-                    String color = vehicleData[5];
-                    int odometer = Integer.parseInt(vehicleData[6]);
-                    BigDecimal price = new BigDecimal(vehicleData[7]);
+        if (vehicleData.length < 8) {
+            continue;
+        }
 
-                    Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+        int vin = Integer.parseInt(vehicleData[0]);
+        int year = Integer.parseInt(vehicleData[1]);
+        String make = vehicleData[2];
+        String model = vehicleData[3];
+        String vehicleType = vehicleData[4];
+        String color = vehicleData[5];
+        int odometer = Integer.parseInt(vehicleData[6]);
+        BigDecimal price = new BigDecimal(vehicleData[7]);
 
-                    dealership.addVehicle(vehicle);
-                }
-            }
+        Vehicle vehicle = new Vehicle(
+                vin,
+                year,
+                make,
+                model,
+                vehicleType,
+                color,
+                odometer,
+                price
+        );
+
+        dealership.addVehicle(vehicle);
+    }
 
             reader.close();
 
