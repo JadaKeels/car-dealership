@@ -11,4 +11,10 @@ public class UserInterface {
     public UserInterface() {
         scanner = new Scanner(System.in);
     }
+
+private void init() {
+    DealershipFileManager fileManager =
+            new DealershipFileManager();
+
+    dealership = fileManager.getDealership();
 }
