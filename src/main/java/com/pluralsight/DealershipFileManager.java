@@ -2,9 +2,12 @@ package com.pluralsight;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.math.BigDecimal;
 
 public class DealershipFileManager {
+
+    private static final String FILE_NAME = "inventory.csv";
 
     public Dealership getDealership() {
         Dealership dealership = null;
@@ -32,15 +35,14 @@ public class DealershipFileManager {
                 String[] vehicleData = line.split("\\|");
 
                 Vehicle vehicle = new Vehicle(
-                        Integer.parseInt(vehicleData[0]), // vin
-                        Integer.parseInt(vehicleData[1]), // year
-                        vehicleData[2],                   // make
-                        vehicleData[3],                   // model
-                        vehicleData[4],                   // vehicleType
-                        vehicleData[5],                   // color
-                        Integer.parseInt(vehicleData[6]), // odometer
-                        Double.parseDouble(vehicleData[7]), // price
-                        vehicleData[8]                    // sold status
+                        Integer.parseInt(vehicleData[0]),
+                        Integer.parseInt(vehicleData[1]),
+                        vehicleData[2],
+                        vehicleData[3],
+                        vehicleData[4],
+                        vehicleData[5],
+                        Integer.parseInt(vehicleData[6]),
+                        new BigDecimal(vehicleData[7])
                 );
 
                 dealership.addVehicle(vehicle);
@@ -54,11 +56,12 @@ public class DealershipFileManager {
         }
 
         return dealership;
-    }   // <-- getDealership ends here
+    }
 
     public void saveDealership(Dealership dealership) {
         try {
-            // write dealership and vehicles to file
+            // Write dealership and vehicles to file
+
         } catch (IOException e) {
             System.out.println("Error saving dealership file.");
             e.printStackTrace();
