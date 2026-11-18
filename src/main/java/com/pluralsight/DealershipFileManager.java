@@ -60,10 +60,35 @@ public class DealershipFileManager {
 
     public void saveDealership(Dealership dealership) {
         try {
-            // Write dealership and vehicles to file
+            BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME));
+
+            // Write dealership information
+            writer.write(
+                    dealership.getName() + "|" +
+                            dealership.getAddress() + "|" +
+                            dealership.getPhone()
+            );
+            writer.newLine();
+
+            // Write vehicles
+            for (Vehicle vehicle : dealership.getAllVehicles()) {
+                writer.write(
+                        vehicle.getVin() + "|" +
+                                vehicle.getYear() + "|" +
+                                vehicle.getMake() + "|" +
+                                vehicle.getModel() + "|" +
+                                vehicle.getVehicleType() + "|" +
+                                vehicle.getColor() + "|" +
+                                vehicle.getOdometer() + "|" +
+                                vehicle.getPrice()
+                );
+                writer.newLine();
+            }
+
+            writer.close();
 
         } catch (IOException e) {
-            System.out.println("Error saving dealership file.");
+            System.out.println("Error saving inventory file.");
             e.printStackTrace();
         }
     }
