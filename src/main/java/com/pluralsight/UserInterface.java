@@ -29,48 +29,50 @@ private void init() {
         for (Vehicle vehicle : vehicles) {
             System.out.println(vehicle);
         }
+    }
 
-        private void processGetAllVehiclesRequest() {
+    private void processSearchByPriceRequest() {
+        System.out.println("Searching...");
+    }
 
-            List<Vehicle> vehicles =
-                    dealership.getAllVehicles();
+    private void processGetAllVehiclesRequest() {
+        List<Vehicle> vehicles = dealership.getAllVehicles();
+        displayVehicles(vehicles);
+    }
 
-            displayVehicles(vehicles);
-        }
+    private void processGetByPriceRequest() {
 
-        private void processGetByPriceRequest() {
+    }
 
-        }
+    private void processGetByMakeModelRequest() {
 
-        private void processGetByMakeModelRequest() {
+    }
 
-        }
+    private void processGetByYearRequest() {
 
-        private void processGetByYearRequest() {
+    }
 
-        }
+    private void processGetByColorRequest() {
 
-        private void processGetByColorRequest() {
+    }
 
-        }
+    private void processGetByMileageRequest() {
 
-        private void processGetByMileageRequest() {
+    }
 
-        }
+    private void processGetByVehicleTypeRequest() {
 
-        private void processGetByVehicleTypeRequest() {
+    }
 
-        }
+    private void processAddVehicleRequest() {
 
-        private void processAddVehicleRequest() {
+    }
 
-        }
+    private void processRemoveVehicleRequest() {
 
-        private void processRemoveVehicleRequest() {
+    }
 
-        }
-
-        public void display() {
+    public void display () {
 
             init();
 
@@ -143,5 +145,7 @@ private void init() {
 
             } while (choice != 99);
         }
+    }
+
 
 
