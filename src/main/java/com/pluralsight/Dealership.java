@@ -2,6 +2,7 @@ package com.pluralsight;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.math.BigDecimal;
 
 public class Dealership {
     private String name;
@@ -44,11 +45,13 @@ public class Dealership {
     }
 
     // Search by Price
-    public List<Vehicle> getVehiclesByPrice(double min, double max) {
+    public List<Vehicle> getVehiclesByPrice(BigDecimal min, BigDecimal max) {
         List<Vehicle> matchingVehicles = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
-            if (vehicle.getPrice() >= min && vehicle.getPrice() <= max) {
+            if (vehicle.getPrice().compareTo(min) >= 0 &&
+                    vehicle.getPrice().compareTo(max) <= 0) {
+
                 matchingVehicles.add(vehicle);
             }
         }
