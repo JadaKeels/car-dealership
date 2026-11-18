@@ -30,4 +30,10 @@ private void init() {
             System.out.println(vehicle);
         }
 
+        private void processGetAllVehiclesRequest() {
 
+            List<Vehicle> vehicles =
+                    dealership.getAllVehicles();
+
+            displayVehicles(vehicles);
+        }
