@@ -118,7 +118,7 @@ public class Dealership {
         List<Vehicle> matchingVehicles = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
-            if (vehicle.getVehicleType().equalsIgnoreCase(vehicleType)) {
+            if (vehicle.getMake().equalsIgnoreCase(vehicleType)) {
                 matchingVehicles.add(vehicle);
             }
         }
