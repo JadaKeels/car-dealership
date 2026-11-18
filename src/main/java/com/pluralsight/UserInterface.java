@@ -18,3 +18,16 @@ private void init() {
 
     dealership = fileManager.getDealership();
 }
+
+    private void displayVehicles(List<Vehicle> vehicles) {
+
+        if (vehicles.isEmpty()) {
+            System.out.println("No vehicles found.");
+            return;
+        }
+
+        for (Vehicle vehicle : vehicles) {
+            System.out.println(vehicle);
+        }
+
+
