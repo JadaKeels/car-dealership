@@ -2,6 +2,8 @@ package com.pluralsight;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
 
@@ -70,25 +72,10 @@ public class DealershipFileManager {
             );
             writer.newLine();
 
-            // Write vehicles
-            for (Vehicle vehicle : dealership.getAllVehicles()) {
-                writer.write(
-                        vehicle.getVin() + "|" +
-                                vehicle.getYear() + "|" +
-                                vehicle.getMake() + "|" +
-                                vehicle.getModel() + "|" +
-                                vehicle.getVehicleType() + "|" +
-                                vehicle.getColor() + "|" +
-                                vehicle.getOdometer() + "|" +
-                                vehicle.getPrice()
-                );
-                writer.newLine();
-            }
-
             writer.close();
 
         } catch (IOException e) {
-            System.out.println("Error saving inventory file.");
+            System.out.println("Error saving dealership.");
             e.printStackTrace();
         }
     }
