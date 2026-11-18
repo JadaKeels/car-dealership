@@ -37,3 +37,36 @@ private void init() {
 
             displayVehicles(vehicles);
         }
+
+        private void processGetByPriceRequest() {
+
+        }
+
+        private void processGetByMakeModelRequest() {
+
+        }
+
+        private void processGetByYearRequest() {
+
+        }
+
+        private void processGetByColorRequest() {
+
+        }
+
+        private void processGetByMileageRequest() {
+
+        }
+
+        private void processGetByVehicleTypeRequest() {
+
+        }
+
+        private void processAddVehicleRequest() {
+
+        }
+
+        private void processRemoveVehicleRequest() {
+
+        }
+
