@@ -79,11 +79,15 @@ public class Dealership {
     }
 
     // Search by Year
-    public List<Vehicle> getVehiclesByYear(int min, int max) {
+    public List<Vehicle> getVehiclesByYear(int minYear, int maxYear) {
+
         List<Vehicle> matchingVehicles = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
-            if (vehicle.getYear() >= min && vehicle.getYear() <= max) {
+
+            if (vehicle.getYear() >= minYear &&
+                    vehicle.getYear() <= maxYear) {
+
                 matchingVehicles.add(vehicle);
             }
         }
