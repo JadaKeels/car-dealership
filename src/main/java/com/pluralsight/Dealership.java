@@ -97,9 +97,11 @@ public class Dealership {
 
     // Search by Color
     public List<Vehicle> getVehiclesByColor(String color) {
+
         List<Vehicle> matchingVehicles = new ArrayList<>();
 
         for (Vehicle vehicle : inventory) {
+
             if (vehicle.getColor().equalsIgnoreCase(color)) {
                 matchingVehicles.add(vehicle);
             }
