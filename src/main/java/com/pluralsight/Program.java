@@ -4,15 +4,9 @@ public class Program {
 
     public static void main(String[] args) {
 
-        DealershipFileManager fileManager = new DealershipFileManager();
+        UserInterface userInterface =
+                new UserInterface();
 
-        Dealership dealership = fileManager.getDealership();
-
-        System.out.println(dealership.getName());
-
-        for (Vehicle vehicle : dealership.getAllVehicles()) {
-
-            System.out.println(vehicle);
-        }
+        userInterface.display();
     }
 }
