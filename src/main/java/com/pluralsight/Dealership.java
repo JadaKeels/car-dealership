@@ -134,12 +134,11 @@ public class Dealership {
 
         for (Vehicle vehicle : inventory) {
 
-            if (vehicle.getVehicleType()
-                    .equalsIgnoreCase(vehicleType)) {
-
+            if (vehicle.getVehicleType().equalsIgnoreCase(vehicleType)) {
                 matchingVehicles.add(vehicle);
             }
         }
 
         return matchingVehicles;
     }
+}

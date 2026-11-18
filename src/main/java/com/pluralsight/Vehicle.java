@@ -1,6 +1,6 @@
 package com.pluralsight;
 
-import  java.math.BigDecimal;
+import java.math.BigDecimal;
 
 public class Vehicle {
 
@@ -8,18 +8,20 @@ public class Vehicle {
     private int year;
     private String make;
     private String model;
-    private String vehiceType;
+    private String vehicleType;
     private String color;
     private int odometer;
     private BigDecimal price;
 
-    public Vehicle(int vin, int year, String make, String model, String vehiceType, String color, int odometer, BigDecimal price) {
+    public Vehicle(int vin, int year, String make, String model,
+                   String vehicleType, String color,
+                   int odometer, BigDecimal price) {
 
         this.vin = vin;
         this.year = year;
         this.make = make;
         this.model = model;
-        this.vehiceType = vehiceType;
+        this.vehicleType = vehicleType;
         this.color = color;
         this.odometer = odometer;
         this.price = price;
@@ -57,12 +59,12 @@ public class Vehicle {
         this.model = model;
     }
 
-    public String getVehiceType() {
-        return vehiceType;
+    public String getVehicleType() {
+        return vehicleType;
     }
 
-    public void setVehiceType(String vehiceType) {
-        this.vehiceType = vehiceType;
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
     public String getColor() {
@@ -89,4 +91,3 @@ public class Vehicle {
         this.price = price;
     }
 }
-
